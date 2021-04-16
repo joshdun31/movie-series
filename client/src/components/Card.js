@@ -16,7 +16,7 @@ class Card extends Component{
                     <div className='search-card-header text-center my-1'>
                         <h5>{movieData.Title} <span>({movieData.Year})</span></h5>
                     </div>
-                    <div className='search-card-body' onClick={()=>{this.props.movieCard(this.props.data.imdbID)}}>
+                    <div className='search-card-body' onClick={()=>{this.props.movieCard(this.props.data)}}>
                         <img alt={movieData.Title+'\'s Poster'} src={movieData.Poster}></img>
                     </div>
                 </div>

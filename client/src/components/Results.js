@@ -16,18 +16,22 @@ class Results extends Component{
             movieFilter:[],
             tvshowFilter:[]
         }
+        document.title=props.title+'(Movie) - search results (Movie)'
     }
     linkHandle=(type)=>{
         if(type==='movie'){
+            document.title=this.props.title+'(Movie) - search results'
             this.setState({movie:true,tvshow:false})
         }
         else{
+            document.title=this.props.title+'(TV Show) - search results'
             this.setState({movie:false,tvshow:true})
         }
     }
     movieCard=async(details)=>{
         this.setState({load:true})
-        let response=await axios.get(`/movie/${details}`)
+        document.title=`${details.Title} (${details.Year}) - details`
+        let response=await axios.get(`/movie/${details.imdbID}`)
         this.setState({separateMovieData:response.data,separate:true,load:false})
     }
     componentDidMount(){
@@ -42,7 +46,10 @@ class Results extends Component{
                     <div className='row'>
                         <div className='col-md-6 offset-md-3 col-sm-12'>
                             <div className='i-arrow'>
-                                <i onClick={()=>{this.setState({separate:false})}} className='fas fa-arrow-alt-circle-left'></i>
+                                <i onClick={()=>{
+                                    this.setState({separate:false})
+                                    document.title=this.props.title+'(Movie) - search results'
+                                    }} className='fas fa-arrow-alt-circle-left'></i>
                             </div>
                             <Movie data={this.state.separateMovieData}/>
                         </div>

@@ -84,7 +84,7 @@ class Home extends Component{
         <div className='conttainer'>
             {this.state.movieDataResponse?
               this.state.movieData?
-                <Results data={this.state.movieData}/>
+                <Results data={this.state.movieData} title={this.state.form.title}/>
                 :
                 <div className='text-center mt-5 color-white mx-3'>
                   <h4>No such movie or tv shows with such title</h4>
