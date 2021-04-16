@@ -3,11 +3,12 @@ const app=express()
 const bodyParser=require('body-parser')
 const cors=require('cors')
 const path=require('path')
-
+const requestLogger=require('./utilities/requestLogger')
 const PORT=process.env.PORT || 5000
 
 app.use(bodyParser.json())
 app.use(cors())
+app.use(requestLogger)
 app.use('/',require('./routes/movie'))
 
 if (process.env.NODE_ENV === "production") {
