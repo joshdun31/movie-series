@@ -24,7 +24,11 @@ class Home extends Component{
         event.preventDefault()
         try {
           this.setState({movieData:null,movieDataResponse:false,load:true})
-            let response=await axios.get(`/search/${this.state.form.title}`)
+            let response=await axios.get(`/search/${this.state.form.title}`,{
+              headers:{
+                "Authorization":"Bearer 8A085DFC3E5BEF71F611D372D8C0040E9A525F08B9B53DE9F0804946218E0FB8"
+              }
+            })
             if (response.data.Response==="True") {
                 this.setState({movieData:response.data.Search,movieDataResponse:true,load:false})
             } else {

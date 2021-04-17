@@ -9,9 +9,9 @@ class Movie extends Component{
     actorLink=(data)=>{
         let splitted=data.split(',')
         let arr=[]
-        splitted.map(_=>{
-            arr.push(<span><a href={'https://www.google.com/search?q='+_} rel="noreferrer" target='_blank'>{_}</a></span>)
-            arr.push(<span style={{margin:'0px 2px 0px 1px' }}>,</span>)
+        splitted.map((_,i)=>{
+            arr.push(<span key={i}><a href={'https://www.google.com/search?q='+_} rel="noreferrer" target='_blank'>{_}</a></span>)
+            arr.push(<span key={i+'span'} style={{margin:'0px 2px 0px 1px' }}>,</span>)
             return _
         })
         arr.pop()
@@ -21,7 +21,6 @@ class Movie extends Component{
         const movie={
             color:'white'
         }
-        console.log(this.state.movieData);
         return(
             
             <div style={movie} className='p-3 movie-card'>

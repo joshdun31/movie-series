@@ -13,11 +13,13 @@ class Card extends Component{
         return(
             <CSSTransition in={true} appear={true} timeout={300} classNames='fade'>
                 <div className='search-card mx-2 my-4'>
-                    <div className='search-card-header text-center my-1'>
-                        <h5>{movieData.Title} <span>({movieData.Year})</span></h5>
-                    </div>
+                    
                     <div className='search-card-body' onClick={()=>{this.props.movieCard(this.props.data)}}>
                         <img alt={movieData.Title+'\'s Poster'} src={movieData.Poster}></img>
+                    </div>
+                    <div className='search-card-header'>
+                        <p className='movie-title' onClick={()=>{this.props.movieCard(this.props.data)}}>{movieData.Title}</p>
+                        <p className='movie-year'>{movieData.Year}</p>
                     </div>
                 </div>
             </CSSTransition>
