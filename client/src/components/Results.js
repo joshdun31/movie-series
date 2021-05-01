@@ -1,6 +1,5 @@
 import {Component,Fragment} from 'react';
 import Card from './Card';
-import Movie from './Movie'
 import axios from 'axios'
 import {CSSTransition} from 'react-transition-group';
 class Results extends Component{
@@ -11,7 +10,6 @@ class Results extends Component{
             movie:true,
             tvshow:false,
             separate:false,
-            separateMovieData:null,
             load:false,
             movieFilter:[],
             tvshowFilter:[]
@@ -20,19 +18,23 @@ class Results extends Component{
     }
     linkHandle=(type)=>{
         if(type==='movie'){
-            document.title=this.props.title+'(Movie) - search results'
+            document.title=this.props.title+' (Movie) - search results'
             this.setState({movie:true,tvshow:false})
         }
         else{
-            document.title=this.props.title+'(TV Show) - search results'
+            document.title=this.props.title+' (TV Show) - search results'
             this.setState({movie:false,tvshow:true})
         }
     }
     movieCard=async(details)=>{
-        this.setState({load:true})
-        document.title=`${details.Title} (${details.Year}) - details`
-        let response=await axios.get(`/movie/${details.imdbID}`)
-        this.setState({separateMovieData:response.data,separate:true,load:false})
+        try {
+            this.setState({load:true})
+            document.title=`${details.Title} (${details.Year}) - details`
+            let response=await axios.get(`/movie/${details.imdbID}`)
+            this.setState({separateMovieData:response.data,separate:true,load:false})
+        } catch (error) {
+            console.log(error.message);
+        }
     }
     componentDidMount(){
         let mFilter=this.state.movieData.filter(_=>_.Type==='movie'?_:null)
@@ -40,24 +42,7 @@ class Results extends Component{
         this.setState({movieFilter:mFilter,tvshowFilter:tFilter})
     }
     render(){
-        if(this.state.separate){
-            return(
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-md-6 offset-md-3 col-sm-12'>
-                            <div className='i-arrow'>
-                                <i onClick={()=>{
-                                    this.setState({separate:false})
-                                    document.title=this.props.title+'(Movie) - search results'
-                                    }} className='fas fa-arrow-alt-circle-left'></i>
-                            </div>
-                            <Movie data={this.state.separateMovieData}/>
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-        else if(this.state.load){
+        if(this.state.load){
             return(
                 <div className='text-center color-white loading py-5'>
                     <h4>

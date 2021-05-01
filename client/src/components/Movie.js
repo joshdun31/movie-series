@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 class Movie extends Component{
     constructor(props) {
         super(props)
@@ -30,6 +31,12 @@ class Movie extends Component{
                 <div className='text-center font-weight-bold mb-3'>
                     <img src={this.state.movieData.Poster} alt={`${this.state.movieData.Title} movie poster`}></img>
                 </div>
+                {this.state.movieData.Type==='movie'?
+                    <div className='text-center my-2'>
+                        <Link to={'/watchonline/'+this.state.movieData.Title+'/'+this.state.movieData.imdbID}><button className="btn btn-primary">Watch Online</button></Link>
+                    </div>
+                :null}
+                
                 <div className="font-weight-bold">
                     <p>Type: <span>{this.state.movieData.Type}</span></p>
                 </div>
