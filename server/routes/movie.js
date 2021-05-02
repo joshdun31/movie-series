@@ -16,10 +16,10 @@ router.get('/movie/:title',async(req,res)=>{
         return res.json({'message':error.message})
     }
 })
-router.get('/search/:title',async(req,res)=>{
+router.get('/search/:title/:page',async(req,res)=>{
     try {
-        let {title}=req.params
-        let response=await axios.get(`http://www.omdbapi.com/?apikey=f4b4892f&s=${title}&plot=full`)
+        let {title,page}=req.params
+        let response=await axios.get(`http://www.omdbapi.com/?apikey=f4b4892f&s=${title}&page=${page}`)
         let model=await collection.getCollection()
         let result=await model.insertMany([{'keyword':title}])
         return res.json(response.data)

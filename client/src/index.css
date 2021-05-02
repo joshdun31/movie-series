@@ -9,6 +9,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
+a{
+  color: white !important;
+  text-decoration: none !important;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -27,21 +31,72 @@ code {
   font-weight: 300 !important;
   margin-left: 1px;
 }
+
+
+/* Loading css */
+
 .loading{
-  padding: 24rem auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  letter-spacing: 0.5rem;
+}
+
+.dots{
+  position: relative;
 }
 
 .dot-1{
-  animation: jump 1s;
+  position: absolute;
+  animation: jump1 1s infinite;
 }
-@keyframes jump{
+@keyframes jump1{
+  0%{
+    top: -10px;
+  }
   50%{
-    margin-top: -10px;
+    top:0px;
   }
   100%{
-    margin-top: 0px;
+    top: -10px;
   }
 }
+.dot-2{
+  position: absolute;
+  left: 10px;
+  animation: jump2 1s infinite;
+  animation-delay: 0.2s;
+}
+@keyframes jump2{
+  0%{
+    top: -10px;
+  }
+  50%{
+    top:0px;
+  }
+  100%{
+    top: -10px;
+  }
+}
+.dot-3{
+  position: absolute;
+  left: 20px;
+  animation: jump3 1s infinite;
+  animation-delay: 0.4s;
+}
+@keyframes jump3{
+  0%{
+    top: -10px;
+  }
+  50%{
+    top:0px;
+  }
+  100%{
+    top: -10px;
+  }
+}
+
 
 .search-card{
   width: 250px;
@@ -62,6 +117,9 @@ code {
   font-family: 'Arimo', sans-serif;
   margin: 0.15rem auto 0rem !important;
 }
+.search-card-header .movie-title:hover{
+  text-decoration: underline;
+}
 .search-card-header .movie-year{
   font-family: 'Arimo', sans-serif;
   color: #666 !important;
@@ -69,24 +127,58 @@ code {
 }
 .search-card-body{
   width: 250px;
-  height: 350px;
+  height: 330px;
   position: relative;
-  cursor: pointer;
+  /* cursor: pointer; */
   overflow: hidden;
-  border:2.5px solid #1DB954;
+  border:1.5px solid #1DB954;
   border-radius: 0.25rem;
 }
 
 .search-card-body img{
   width: 100%;
-  height: 100%;
+  height: 330px;
   object-fit:fill;
   transition: all 0.2s ease-out;
   border-radius: 0.15rem;
 }
-
+.card-hover-div{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in;
+}
+.card-hover-button{
+  width: 100%;
+  height: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .search-card-body:hover img{
   transform: scale(1.05);
+}
+
+.search-card-body:hover .card-hover-div{
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.3s ease-in;
+}
+.separate-movie-card img{
+  border:1px solid #1DB954;
+  border-radius: 5px;
+  /* 1DB954 */
+}
+.go-back-icon{
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 .whole-card{
   width: 100%;
@@ -141,6 +233,9 @@ code {
   .search-card{
     width: 40%;
   }
+  .search-card-body img{
+    height: 250px;
+  }
   .search-card-header h5{
     font-size: 1.05rem !important;
   }
@@ -178,3 +273,5 @@ code {
   opacity: 1;
   transition: opacity 300ms ease-in-out;
 }
+
+

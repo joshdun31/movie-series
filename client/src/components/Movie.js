@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,withRouter} from 'react-router-dom';
 class Movie extends Component{
     constructor(props) {
         super(props)
@@ -18,17 +18,22 @@ class Movie extends Component{
         arr.pop()
         return arr
     }
+    
     render(){
         const movie={
             color:'white'
         }
+        const goBack=()=>{
+            this.props.history.goBack()
+        }
         return(
             
             <div style={movie} className='p-3 movie-card'>
+                <i onClick={goBack} className="fas fa-arrow-left go-back-icon"></i>
                 <div className='text-center font-weight-bold mb-3 mt-1'>
                     <h4>{this.state.movieData.Title}</h4>
                 </div>
-                <div className='text-center font-weight-bold mb-3'>
+                <div className='text-center font-weight-bold mb-3 separate-movie-card'>
                     <img src={this.state.movieData.Poster} alt={`${this.state.movieData.Title} movie poster`}></img>
                 </div>
                 {this.state.movieData.Type==='movie'?
@@ -80,4 +85,4 @@ class Movie extends Component{
     }
 }
 
-export default Movie
+export default withRouter(Movie)

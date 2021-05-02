@@ -1,6 +1,7 @@
 import {  Component} from 'react';
 import Movie from './Movie'
 import axios from 'axios'
+import Loading from './Loading';
 
 class MovieSeries extends Component{
     constructor(props) {
@@ -38,14 +39,7 @@ class MovieSeries extends Component{
         }
         else{
             return(
-                <div className='text-center loading py-5 color-white'>
-                    <h4 style={{color:'white'}}>
-                    Loading
-                    <span className='dot-1'>.</span>
-                    <span className='dot-2'>.</span>
-                    <span className='dot-3'>.</span>
-                    </h4>
-                </div>
+                <Loading/>
             )
         }
     }

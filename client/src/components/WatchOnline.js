@@ -28,7 +28,8 @@ class WatchOnline extends Component{
             document.title=this.props.match.params.movie+' - Watch online'
         return(
             <div style={iframe} className='d-flex justify-content-center align-items-center'>
-                <iframe style={iframeStyle} webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src={"https://www.2embed.ru/embed/imdb/movie?id="+this.state.id} title={this.state.id}></iframe>
+                <iframe id="watch" style={iframeStyle} webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src={"https://www.2embed.ru/embed/imdb/movie?id="+this.state.id} title={this.state.id}></iframe>
+                
             </div>
         )
     }

@@ -1,6 +1,5 @@
 import {Component,Fragment} from 'react';
 import Card from './Card';
-import axios from 'axios'
 import {CSSTransition} from 'react-transition-group';
 class Results extends Component{
     constructor(props) {
@@ -24,16 +23,6 @@ class Results extends Component{
         else{
             document.title=this.props.title+' (TV Show) - search results'
             this.setState({movie:false,tvshow:true})
-        }
-    }
-    movieCard=async(details)=>{
-        try {
-            this.setState({load:true})
-            document.title=`${details.Title} (${details.Year}) - details`
-            let response=await axios.get(`/movie/${details.imdbID}`)
-            this.setState({separateMovieData:response.data,separate:true,load:false})
-        } catch (error) {
-            console.log(error.message);
         }
     }
     componentDidMount(){
@@ -75,7 +64,7 @@ class Results extends Component{
                         {this.state.tvshow?
                             (this.state.tvshowFilter.length===0?<h4 className='text-center mt-5'>No tv shows with such title</h4>:
                             <div className='whole-card'>
-                                {this.state.movieData.map((_,i)=>_.Type==='series'?<Card key={_.imdbID+i} movieCard={this.movieCard} data={_}/>:null)}
+                                {this.state.movieData.map((_,i)=>_.Type==='series'?<Card key={_.imdbID+i} data={_}/>:null)}
                             </div>)
                             :null
                         }

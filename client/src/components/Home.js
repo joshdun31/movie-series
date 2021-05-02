@@ -41,12 +41,9 @@ class Home extends Component{
     else{
       return(
         <Fragment>
-          <div className='container pt-5' style={{height:'100%',color:'white'}}>
+          <div className='container' style={{height:'100%',color:'white'}}>
             <div className='row'>
               <div className='col-md-6 offset-md-3 col-sm-12'>
-                <div className='text-center mb-4 heading'>
-                    <h2 style={{color:'#1DB954'}}>Movie or Series Search</h2>
-                </div>
                 <form className='mb-3' >
                   <div className='form-group' style={{color:"#ddd"}}>
                     {/* <label className='font-weight-bold' htmlFor='title'>Movie or Series Title:</label> */}
@@ -62,7 +59,6 @@ class Home extends Component{
               </div>
             </div>
           </div>
-          
         </Fragment>
       )
     }
