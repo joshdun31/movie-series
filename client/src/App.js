@@ -16,6 +16,9 @@ class App extends Component{
     return(
       <div style={bodyStyle}>
         <Router>
+          <div className='text-center mb-4 heading pt-4 pb-2'>
+              <Link to='/'><h2 style={{color:'#1DB954'}}>Movie or Series Search</h2></Link>
+          </div>
           <Switch>
             <Route exact component={Home} path='/'/>
             <Route exact component={Loading} path='/loading'/>

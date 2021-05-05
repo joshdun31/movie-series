@@ -36,9 +36,6 @@ class MovieSeries extends Component{
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md-6 offset-md-3'>
-                            <div className='text-center mb-4 heading pt-4 pb-2'>
-                                <Link to='/'><h2 style={{color:'#1DB954'}}>Movie or Series Search</h2></Link>
-                            </div>
                             {this.state.separateMovieData?<Movie data={this.state.separateMovieData} />:<Redirect to="/"/>}
                         </div>
                     </div>
