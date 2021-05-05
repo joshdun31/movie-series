@@ -2,6 +2,7 @@ import {  Component} from 'react';
 import Movie from './Movie'
 import axios from 'axios'
 import Loading from './Loading';
+import { Link, Redirect } from 'react-router-dom';
 
 class MovieSeries extends Component{
     constructor(props) {
@@ -18,8 +19,12 @@ class MovieSeries extends Component{
     movieCard=async(id)=>{
         try {
             let response=await axios.get(`/movie/${id}`)
-            this.setState({separateMovieData:response.data,separate:true,load:false})
-            this.setState({load:true})
+            if(response.data.Response==="True"){
+                this.setState({separateMovieData:response.data,load:true})
+            }
+            else{
+                this.setState({separateMovieData:null,load:true})
+            }
             document.title=`${this.state.separateMovieData.Title} (${this.state.separateMovieData.Year})`
         } catch (error) {
             console.log(error.message);
@@ -31,7 +36,10 @@ class MovieSeries extends Component{
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md-6 offset-md-3'>
-                            <Movie data={this.state.separateMovieData} />
+                            <div className='text-center mb-4 heading pt-4 pb-2'>
+                                <Link to='/'><h2 style={{color:'#1DB954'}}>Movie or Series Search</h2></Link>
+                            </div>
+                            {this.state.separateMovieData?<Movie data={this.state.separateMovieData} />:<Redirect to="/"/>}
                         </div>
                     </div>
                 </div>
