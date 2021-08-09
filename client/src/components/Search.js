@@ -35,6 +35,9 @@ class Search extends Component{
         if(this.state.load){
             return(
                 <div>
+                    <div className='text-center mb-4 heading pt-4 pb-2'>
+                      <Link to='/'><h2 style={{color:'#1DB954'}}>Movie or Series Search</h2></Link>
+                    </div>
                     <div className='containeer'>
                         <div className='text-center color-white'>
                             <h4 className="mt-4">Search results for '<span className='font-weight-bold'>{this.state.title}</span>'</h4>
