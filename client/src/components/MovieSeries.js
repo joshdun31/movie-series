@@ -1,4 +1,4 @@
-import {  Component} from 'react';
+import {  Component,Fragment} from 'react';
 import Movie from './Movie'
 import axios from 'axios'
 import Loading from './Loading';
@@ -33,13 +33,18 @@ class MovieSeries extends Component{
     render(){
         if(this.state.load){
             return(
-                <div className='container'>
-                    <div className='row'>
-                        <div className='col-md-6 offset-md-3'>
-                            {this.state.separateMovieData?<Movie data={this.state.separateMovieData} />:<Redirect to="/"/>}
+                <Fragment>
+                    <div className='text-center mb-4 heading pt-4 pb-2'>
+                      <Link to='/'><h2 style={{color:'#1DB954'}}>Movie or Series Search</h2></Link>
+                  </div>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='col-md-6 offset-md-3'>
+                                {this.state.separateMovieData?<Movie data={this.state.separateMovieData} />:<Redirect to="/"/>}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Fragment>
             )
         }
         else{
