@@ -27,7 +27,7 @@ class WatchOnlineTv extends Component{
                 overflow:"visible",
                 display:"inline-block"
             }
-            document.title=this.props.match.params.movie+' - Watch online'
+            document.title='Watch online'
         return(
             <div style={iframe} className='d-flex justify-content-center align-items-center'>
                 <iframe id="watch" style={iframeStyle} webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" src={"https://www.2embed.ru/embed/tmdb/tv?id="+this.state.id+"&s="+this.state.season+"&e="+this.state.episode} title={this.state.id}></iframe>
