@@ -2,6 +2,7 @@ import {  Component} from "react";
 import {BrowserRouter as Router,Route,Switch, Redirect,Link} from 'react-router-dom';
 import Home from './components/Home';
 import WatchOnline from './components/WatchOnline';
+import WatchOnlineTv from './components/WatchOnlineTv';
 import MovieSeries from './components/MovieSeries';
 import Search from './components/Search';
 import Loading from './components/Loading';
@@ -21,6 +22,7 @@ class App extends Component{
             <Route exact component={Loading} path='/loading'/>
             <Route exact component={Search} path='/search/:title'/>
             <Route exact component={WatchOnline} path='/watchonline/:movie/:id' />
+              <Route exact component={WatchOnlineTv} path='/watchonline/tv/:id/:season/:episode' />
             <Route exact component={MovieSeries} path={'/:type/:id'} />
             <Route path="*" render={()=><Redirect to="/"/>} />
           </Switch>
